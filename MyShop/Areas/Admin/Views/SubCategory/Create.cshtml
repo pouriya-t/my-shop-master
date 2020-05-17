@@ -1,0 +1,34 @@
+﻿@model MyShop.Models.ViewModels.SubCategoryVM
+
+
+<div class="border backgroundWhite row">
+    <div class="col-8">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label class="col-form-label">Category Name</label>
+                </div>
+                <div class="col-5">
+                    @Html.DropDownListFor(m => m.SubCategory.CategoryId, Model.CategoryList,
+                   " - Please select a Category - ", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="SubCategory.Name" class="col-form-label"></label>
+                </div>
+                <div class="col-5">
+                    <input asp-for="SubCategory.Name" class="form-control" />
+                    <span asp-validation-for="SubCategory.Name"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-5 offset-3">
+                    <partial name="_CreateAndBackToListButton" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

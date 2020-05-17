@@ -1,0 +1,52 @@
+﻿@model OrderDetails
+
+@{
+    ViewData["Title"] = "EditOrderDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit OrderDetails</h1>
+
+
+<form method="post">
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="backgroundWhite card-body rounded">
+        <div class="row my-1">
+            <div class="col-3">
+                <label>Service Name : </label>
+            </div>
+            <div class="col-3">
+                <input asp-for="ServiceName" class="form-control" />
+            </div>
+        </div>
+        <div class="row my-1">
+            <div class="col-3">
+                <label>Price : </label>
+            </div>
+            <div class="col-9">
+                <input asp-for="Price" class="form-control" />
+                <input asp-for="Count" class="form-control" />
+                @*<label readonly class="form-control">@Model.Price X @Model.Count = @(Model.Price * Model.Count) </label>*@
+            </div>
+        </div>
+        <div class="row my-1">
+            <div class="col-3">
+                <label>Description : </label>
+            </div>
+            <div class="col-9">
+                <input asp-for="Description" class="form-control" />
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="form-group row pt-5">
+                <div class="col-5 offset-4">
+                    <partial name="_EditAndBackToListButton" model="Model.Id" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+

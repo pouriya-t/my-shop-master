@@ -1,0 +1,73 @@
+﻿@model MyShop.Models.ViewModels.ServiceVM
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="border backgroundWhite row">
+        <div class="col-8">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label class="col-form-label">Category Name</label>
+                </div>
+                <div class="col-5">
+                    @Html.DropDownListFor(m => m.Service.CategoryId, Model.CategoryList,
+                   " - Please select a Category - ", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label class="col-form-label">SubCategory Name</label>
+                </div>
+                <div class="col-5">
+                    @Html.DropDownListFor(m => m.Service.SubCategoryId, Model.SubCategoryList,
+                   " - Please select a Category - ", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Service.Name" class="form-control"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Service.Name" class="form-control" />
+                    <span asp-validation-for="Service.Name"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Service.Price" class="form-control"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Service.Price" id="txtPrice" class="form-control" />
+                    <span asp-validation-for="Service.Price"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Service.Description" class="form-control"></label>
+                </div>
+                <div class="col-8">
+                    <textarea asp-for="Service.Description" class="form-control" style="height:300px;"></textarea>
+                    <span asp-validation-for="Service.Description"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Service.ImageUrl" class="form-control"></label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-5 offset-3">
+                    <partial name="_CreateAndBackToListButton" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</form>

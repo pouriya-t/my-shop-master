@@ -1,0 +1,88 @@
+﻿@model MyShop.Models.ViewModels.ServiceVM
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-primary">Details</h1>
+<br />
+<br />
+
+<div class="col-12 border backgroundWhite">
+    <form enctype="multipart/form-data">
+
+        <input type="hidden" asp-for="Service.Id" />
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="Service.Name" class="form-control border-0"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Service.Name" disabled class="form-control" />
+                <span asp-validation-for="Service.Name"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="Service.Price" class="form-control border-0"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Service.Price" disabled id="txtPrice" class="form-control" />
+                <span asp-validation-for="Service.Price"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="Service.Description" class="form-control border-0"></label>
+            </div>
+            <div class="col-8">
+                <textarea asp-for="Service.Description" disabled class="form-control" style="height:300px;"></textarea>
+                <span asp-validation-for="Service.Description"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label class="form-control border-0">Category Name</label>
+            </div>
+            <div class="col-8">
+                <label disabled class="form-control">@Model.Service.Category.Name</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label class="form-control border-0">Category Name</label>
+            </div>
+            <div class="col-8">
+                <label disabled class="form-control">@Model.Service.SubCategory.Name</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label class="form-control border-0">Image</label>
+            </div>
+            @if (Model.Service.ImageUrl == null)
+            {
+                <div class="col-3">
+                    <p class="form-contro text-danger border-0">No Image To Set</p>
+                </div>
+            }
+            else
+            {
+                <div class="col-3">
+                    <a href="@Model.Service.ImageUrl">
+                        <img src="@Model.Service.ImageUrl" style="width:100%;border-radius:5px;border:1px solid #bbb9b9" />
+                    </a>
+                </div>
+            }
+        </div>
+
+
+
+        <div class="form-group row pt-5">
+            <div class="col-5 offset-4">
+                <partial name="_DetailsAndBackToListButton" model="Model.Service.Id" />
+            </div>
+        </div>
+
+    </form>
+
+</div>

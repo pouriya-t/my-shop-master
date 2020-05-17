@@ -1,0 +1,97 @@
+﻿@model MyShop.Models.ShoppingCart
+@using MyShop.Extensions
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hello</h2>
+<form method="post">
+    <div class="border backgroundWhite row">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-md-8">
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="Service.Name" class="text-info font-weight-bold"></label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="Service.Name" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="Service.Description" class="text-info font-weight-bold"></label>
+                </div>
+                <div class="col-md-8">
+                    <div class="border p-2">
+                        @Html.Raw(Model.Service.Description)
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="Service.CategoryId" class="text-info font-weight-bold"></label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="Service.Category.Name" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="Service.SubCategoryId" class="text-info font-weight-bold"></label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="Service.SubCategory.Name" readonly class="form-control" />
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="Service.Price" class="text-info font-weight-bold"></label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="Service.Price" type="hidden" class="form-control" />
+                    <label readonly class="form-control" >@Model.Service.Price.ToString("#,##0")</label>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="Count" class="text-info font-weight-bold"></label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="Count" class="form-control" />
+                    <span asp-validation-for="Count" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" value="Add to Cart" class="btn btn-primary form-control">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 offset-1 d-none d-md-block">
+            <img src="@Model.Service.ImageUrl"  style="border-radius:5px;border: 1px solid #bbb9b9;width:100%;" />
+        </div>
+
+
+
+    </div>
+    <input asp-for="ServiceId" hidden />
+</form>
+
+@section Scripts{
+
+
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
